@@ -83,4 +83,9 @@ class MoneyController extends Controller
         return redirect()->route('admin')->with('success',"อัพเดตข้อมูลเรียบร้อย");
 
     }
+    public function delete($id){
+        //dd($id);
+        $delete=tbmoney::find($id)->forceDelete();
+        return redirect()->back()->with('success',"ลบข้อมูลเรียบร้อย");
+    }
 }
