@@ -49,4 +49,38 @@ class MoneyController extends Controller
         $tbmoney->save();
         return redirect()->back()->with('success',"บันทึกข้อมูลเรียบร้อย");
     }
+    public function edit($id){
+        //dd($id);
+        $tbmoney = tbmoney::find($id);
+        //dd($transections,$transections->detail);
+        return view('admin.edit',compact('tbmoney'));
+    }
+    public function update(Request $request , $id){
+        $request->validate(
+            [
+                
+                'tbmoney_Detail'=>"required|max:255",
+                'tbmoney_type'=>"required|in:in,out",
+                'tbmoney_date'=>"required",
+                'tbmoney_amount' => "required|regex:/^\d+(\.\d{1,2})?$/"
+            ],
+            [
+                'tbmoney_Detail.required'=>"กรุณาป้อนข้อมูลแผนก",
+                'tbmoney_type.required'=>"กรุณาเลือก รายรับหรือรายจ่าย",
+                'tbmoney_Detail.mex'=>"ห้ามป้อนเกิน 255 ตัวอักษร",
+                'tbmoney_date.required'=>"กรุณาเลือกหรือกรอก วันที่",
+                'tbmoney_amount.required'=>"กรุณาป้อนจำนวน",
+                'tbmoney_amount.regex'=>"รูปแบบจำนวนธุรกรรมไม่ถูกต้อง"
+            ]
+            );
+        //dd($id , $request->tbmoney_Detail,$request->tbmoney_type,$request->tbmoney_date,$request->tbmoney_amount);
+        tbmoney::find($id)->update([
+            $update =   'detail'=>$request->tbmoney_Detail,
+                        'type'=>$request->tbmoney_type,
+                        'date'=>$request->tbmoney_date,
+                        'amount'=>$request->tbmoney_amount
+        ]);
+        return redirect()->route('admin')->with('success',"อัพเดตข้อมูลเรียบร้อย");
+
+    }
 }

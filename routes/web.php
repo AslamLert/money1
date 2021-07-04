@@ -28,4 +28,6 @@ Route::get('/', function () {
 
 Route::get('/admin',[MoneyController::class,'index'])->name('admin');
 Route::post('/admin/add',[MoneyController::class,'addMoney'])->name('NameAddTbmoney');
+Route::get('/admin/edit/{id}',[MoneyController::class,'edit']);
+Route::post('/admin/update/{id}',[MoneyController::class,'update'])->name('NameEditTransection');
 
