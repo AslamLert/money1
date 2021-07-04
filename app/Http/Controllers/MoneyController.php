@@ -8,7 +8,10 @@ use App\Models\tbmoney;
 class MoneyController extends Controller
 {
     public function index(){
-        return view('admin.index');
+        $tbmoney = tbmoney::all();
+        //return view('admin.index');
+
+        return view('admin.index',compact('tbmoney'));
     }
     public function addMoney(Request $request){
         //ตรวจสอบข้อมูล

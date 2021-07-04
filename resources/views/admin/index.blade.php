@@ -40,8 +40,50 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    
+                @if(session("success"))
+                    <div class="alert alert-success">{{session("success")}}</div>
+                    @endif
+                    <div class="card">
+                        <div class="card-header">ตารางข้อมูลรายรับรายจ่าย</div>
+                        <!-- รับ tbmoney -->
+                        <!-- {{$tbmoney}} -->
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ลำดับ</th>
+                                    <th scope="col">รายการ</th>
+                                    <th scope="col">ประเภท</th>
+                                    <th scope="col">วันที่</th>
+                                    <th scope="col">จำนวน</th>
+                                    <th scope="col">Edit</th>
+                                </tr>
+                            </thead>
+                            @php($i=1)
+                            @foreach($tbmoney as $row)
+                            <tr>
+                                <th>{{$i++}}</th>
+                                <td>{{$row->detail}}</td>
+                                <td>{{$row->type=="in" ? "รายรับ" : "รายจ่าย" }}</td>
+                                <td>{{$row->date}}</td>
+                                <td>{{$row->amount}}</td>
+                                @php($Total=$row->sum('amount'))
+                                <td>
+                                    <a href="{{url('/admin/edit/'.$row->id)}}" class="btn btn-primary">แก้ไข</a>
+                                    <a href="{{url('/admin/delete/'.$row->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">ลบ</a>
+
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </table>
+                        รวม
+                        {{$Total}}
+                        </table>
+                    </div>
                 </div>
+
+
+
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">แบบฟอร์ม</div>
