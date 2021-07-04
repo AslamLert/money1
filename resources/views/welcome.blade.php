@@ -33,7 +33,7 @@
         @foreach($arr as $menu)
             <a href="">{{$menu}}</a>
         @endforeach
-        <br>
+        <br><br>
         <a href="{{url('/')}}">Home</a>
         <a href="{{url('/admin')}}">ADMIN</a>
 
