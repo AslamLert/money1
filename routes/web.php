@@ -12,10 +12,20 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-
+http://127.0.0.1:8000/product/iphone/4000
+Route::get('/product/{name}/{price}',function($name,$price){
+    echo "ชื่อสินค้า :$name<br>";
+    echo "ราคา :$price";
+});
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get('/', function () {
+    return view('admin.index');
+});
 
 Route::get('/admin',[MoneyController::class,'index'])->name('admin');
+Route::post('/admin/add',[MoneyController::class,'addMoney'])->name('NameAddTbmoney');
+

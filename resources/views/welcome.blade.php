@@ -21,6 +21,22 @@
         </style>
     </head>
     <body class="antialiased">
+        <?php
+        $arr =array("Home","Money","About");
+        $admin = "AAA";
+        ?>
+        @if($admin != "AAA")
+            <h1>ผู้ใช้ท่านนี้ไม่ได้เป็น ADMIN</h1>
+        @else
+            <h1>ยินดีต้อนรับ ADMIN</h1>
+        @endif
+        @foreach($arr as $menu)
+            <a href="">{{$menu}}</a>
+        @endforeach
+        <br>
+        <a href="{{url('/')}}">Home</a>
+        <a href="{{url('/admin')}}">ADMIN</a>
+
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">

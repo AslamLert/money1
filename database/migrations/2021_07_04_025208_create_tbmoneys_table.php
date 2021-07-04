@@ -17,6 +17,7 @@ class CreateTbmoneysTable extends Migration
             $table->id();
             $table->string('detail');
             $table->string('type', 3);
+            $table->date('date');
             $table->float('amount', 8, 2);
             $table->timestamps();
         });
