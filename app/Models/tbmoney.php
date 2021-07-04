@@ -16,4 +16,9 @@ class tbmoney extends Model
         'amount'
 
     ];
+
+    // public function user(){
+                                            //    money เรียกใช้ {{$row->user()->name}}
+    //     return $this->hasOne(User::class,'id','user_id');
+    // }
 }

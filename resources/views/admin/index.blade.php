@@ -31,7 +31,6 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </ul><br>
-    <h1>Hello Money</h1>
 
 
 

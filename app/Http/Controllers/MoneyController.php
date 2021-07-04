@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tbmoney;
+use Illuminate\Support\Facades\DB;
 
 class MoneyController extends Controller
 {
     public function index(){
+        //เรียกใช้ {{$row->name}}
+        // $tbmoney = DB::table('tbmoney')
+        // ->join('users','tbmoney.user_id','users.id')
+        // ->select('tbmoney.*','users.name');
         $tbmoney = tbmoney::all();
         //return view('admin.index');
-
         return view('admin.index',compact('tbmoney'));
     }
     public function addMoney(Request $request){
